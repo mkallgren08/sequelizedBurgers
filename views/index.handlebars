@@ -1,0 +1,69 @@
+
+<div class="page-header">
+  <h1>Mike's Meats & Burgers!</h1>
+  
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <h2 class = "form-header">To Be Eaten Menu!</h2>
+    <ul>
+      {{#each burgers}}
+        {{#unless this.devoured}}
+          <li class= "to-eat">
+              {{this.burger_name}}
+              {{!-- This *should* switch the value of devoured to "true" --}}
+              <form action="/{{this.id}}?_method=PUT" method="POST" class = "form-button">
+                <input type="hidden" name="devoured" value="true">
+                <button type="submit" class = "form-button-actual">Devour Me!</button>
+              </form>
+
+              {{!-- <form action="/{{this.id}}" method="UPDATE">
+                <button type="submit">Update Me!</button>
+                <input type="text" name="update">
+              </form> --}}
+          </li>
+        {{/unless}}
+      {{/each}}
+    </ul>
+    
+  </div>
+  <div class="col-md-6">
+      <h2 class = "form-header">Already Eaten Burgers</h2>
+
+      <ul>
+        {{#each burgers}}
+          {{#if this.devoured}}
+            <li>
+              {{this.burger_name}}
+            </li>
+          {{/if}}
+        {{/each}}
+      </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <h2 class = "form-header">Add a Burger</h2>
+    <form class="create-update-form" action="/" method="POST" >
+
+      <div class="form-group">
+        <div id="bn">
+          <textarea name="burger_name" id="" cols="30" rows="2"></textarea>
+        </div>
+        <div id = "add-burger">
+          <button type="submit">Add To List!</button>
+        </div>
+        <label for="bn">Enter a burger you would like to eat! 
+          Click the "Add to list" button when ready.</label>
+      </div>
+
+      
+    </form>    
+  </div>
+  <div class="col-md-4"></div>
+
+</div>
+
+
